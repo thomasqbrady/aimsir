@@ -1,6 +1,8 @@
 extends layout
 
 block content
+    h1 Hello, #{username}
+
     form(action="/commands",method="post")
       input(type="text",name="command",value="Hi")
       button

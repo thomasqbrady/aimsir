@@ -13,7 +13,7 @@
     "body-parser": "~1.10.0",
     "debug": "~2.1.0",
     "jade": "~1.8.1",
-    "mqtt": "~0.3.13"
+    "http-auth": "~2.2.5"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

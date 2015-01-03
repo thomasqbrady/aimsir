@@ -4,12 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var auth = require('http-auth');
 
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var commands = require('./routes/commands');
 
+
+// basic auth
+var basic = auth.basic({
+  realm: "TQB.",
+  file: __dirname + "/data/users.htpasswd"
+});
+
 var app = express();
+app.use(auth.connect(basic));
 
 // view engine setup
 
