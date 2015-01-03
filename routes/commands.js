@@ -13,9 +13,9 @@ function getTime() {
     var s = date.getSeconds();
     if (h > 12) { h -= 12 }
     if (s % 2 == 0) {
-        return "" + h + ":" + m
+        return "t" + h + ":" + m
     } else {
-        return "" + h + " " + m
+        return "t" + h + " " + m
     }
 }
 
@@ -27,7 +27,7 @@ router.get('/', function(req, res) {
     } else {
         command = getTime();
     }
-    res.send(command);
+    res.send(command+"<eof>");
 }).post('/',function(req,res){
     if (req && req.body && req.body.command) {
         commands.push(req.body.command);
