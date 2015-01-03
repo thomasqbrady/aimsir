@@ -6,11 +6,7 @@ var commands = [];
 function getTime() {
     var date = new Date();
     var h = date.getHours();
-    console.log("initial h:"+h);
-    h += 6;
-    console.log("adjusted h:"+h);
     if (h > 12) { h -= 12 }
-    console.log("non-military h:"+h);
     var m = date.getMinutes();
     if (m < 10) {
         m = "0" + m;
