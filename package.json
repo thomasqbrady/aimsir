@@ -13,7 +13,8 @@
     "body-parser": "~1.10.0",
     "debug": "~2.1.0",
     "jade": "~1.8.1",
-    "http-auth": "~2.2.5"
+    "http-auth": "~2.2.5",
+    "time": "~0.11.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

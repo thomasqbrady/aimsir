@@ -1,21 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var time = require('time');
 
 var commands = [];
 
 function getTime() {
-    var date = new Date();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    if (m < 10) {
-        m = "0" + m;
-    }
-    var s = date.getSeconds();
-    if (h > 12) { h -= 12 }
-    if (s % 2 == 0) {
-        return "t" + h + ":" + m
+    var now = new time.Date();
+    now.setTimezone('America/Chicago');
+    var timeObj = time.localtime(Date.now()/1000);
+    var h = timeObj.hours;
+    if (h > 12) { h -=12 }
+    var m = timeObj.minutes;
+    if (m < 10) { m = "0" + m }
+    if (timeObj.seconds%2 == 0) {
+        return "t"+h+":"+m;
     } else {
-        return "t" + h + " " + m
+        return "t"+h+" "+m;
     }
 }
 
