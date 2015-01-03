@@ -27,7 +27,7 @@ router.get('/', function(req, res) {
     } else {
         command = getTime();
     }
-    res.send(command+"<eof>");
+    res.send("<bof>"+command+"<eof>");
 }).post('/',function(req,res){
     if (req && req.body && req.body.command) {
         commands.push(req.body.command);
