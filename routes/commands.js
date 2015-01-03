@@ -7,6 +7,7 @@ function getTime() {
     var date = new Date();
     var h = date.getHours();
     if (h > 12) { h -= 12 }
+    if (h < 10) { h = " " + h }
     var m = date.getMinutes();
     if (m < 10) {
         m = "0" + m;
@@ -30,7 +31,7 @@ router.get('/', function(req, res) {
     res.send("<bof>"+command+"<eof>");
 }).post('/',function(req,res){
     if (req && req.body && req.body.command) {
-        commands.push(req.body.command);
+        commands.push("m"+req.body.command);
     }
     console.log(req.body.command);
     backURL=req.header('Referer') || '/';
