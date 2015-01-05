@@ -1,7 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var http = require('http');
 
 var commands = [];
+
+var cycles = 0;
+
+var currentWeather = "w???";
 
 function getTime() {
     var date = new Date();
@@ -20,13 +25,46 @@ function getTime() {
     }
 }
 
+var weatherOptions = {
+  //http://api.openweathermap.org/data/2.5/weather?id=4671654&units=imperial
+  host: 'api.openweathermap.org',
+  path: '/data/2.5/weather?id=4671654&units=imperial'
+};
+
+setWeather = function(response) {
+  var str = '';
+
+  //another chunk of data has been recieved, so append it to `str`
+  response.on('data', function (chunk) {
+    str += chunk;
+  });
+
+  //the whole response has been recieved, so we just print it out here
+  response.on('end', function () {
+    var weatherJSON = JSON.parse(str);
+    currentWeather = "w" + weatherJSON['main']['temp']+"ºF";
+  } );
+}
+
+
+function getWeather() {
+    http.request(weatherOptions, setWeather).end();
+}
+
+getWeather();
+
 /* GET users listing. */
 router.get('/', function(req, res) {
+    cycles++;
+    if (cycles === 900000) {
+        cycles = 0;
+        getWeather();
+    }
     var command = "";
     if (commands.length > 0) {
         command = commands.shift();
     } else {
-        command = getTime();
+        command = getTime() + currentWeather;
     }
     res.send("<bof>"+command+"<eof>");
 }).post('/',function(req,res){
