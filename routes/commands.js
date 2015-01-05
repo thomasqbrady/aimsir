@@ -42,7 +42,7 @@ setWeather = function(response) {
   //the whole response has been recieved, so we just print it out here
   response.on('end', function () {
     var weatherJSON = JSON.parse(str);
-    currentWeather = "w" + weatherJSON['main']['temp']+"ºF";
+    currentWeather = "w" + weatherJSON['main']['temp']+String.fromCharCode(176)+"F";
   } );
 }
 
