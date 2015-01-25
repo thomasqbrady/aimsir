@@ -7,3 +7,12 @@ block content
       input(type="text",name="command",value="Hi")
       button
         Send my greetings
+
+    canvas(id="matrixSource", width="35", height="19")
+    canvas(id="matrixProjected", width="320", height="160")
+
+    script(src="jspm_packages/system.js")
+    script(src="config.js")
+    script.
+      System.baseURL = "/"
+      System.import('aimsir/app')

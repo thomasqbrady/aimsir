@@ -14,7 +14,10 @@ serialPort.open(function (error) {
     setInterval(function(){
       var d = new Date();
       var separator = (d.getSeconds()%2 == 0) ? ":" : " ";
-      var timestamp = "t"+d.getHours()+separator+d.getMinutes()+"w90"+String.fromCharCode(247);
+      //var timestamp = "t"+d.getHours()+separator+d.getMinutes()+"w90"+String.fromCharCode(247);
+      var timestamp = "t"+d.getHours()+separator+d.getMinutes()+"w90";
+
+      //var timestamp = "mTest\r\nthings";
       //var timestamp = "t"+d.getHours()+separator+d.getMinutes();
       console.log("timestamp:"+timestamp);
       serialPort.write(timestamp+"\n", function(err, results) {
